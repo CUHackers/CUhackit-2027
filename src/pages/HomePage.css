@@ -1,0 +1,278 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frame-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.frame {
+  width: 100%;
+  border: 2px solid var(--ink);
+  background: var(--bg);
+  padding: 40px 56px 56px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 6px var(--bg),
+    0 0 0 7px rgba(244, 242, 255, 0.08),
+    0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Top-right CTA ---------- */
+.cta {
+  position: absolute;
+  top: 40px;
+  right: 56px;
+  z-index: 4;
+  display: inline-block;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  background: transparent;
+  border: 2px solid var(--ink);
+  padding: 10px 18px;
+  cursor: pointer;
+  text-shadow:
+    0 0 4px rgba(244, 242, 255, 0.95),
+    0 0 10px rgba(244, 242, 255, 0.65),
+    0 0 20px rgba(76, 214, 230, 0.45);
+  box-shadow:
+    0 0 6px rgba(76, 214, 230, 0.3),
+    inset 0 0 0 0 rgba(76, 214, 230, 0);
+  transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+.cta:hover,
+.cta:focus-visible {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: rgba(76, 214, 230, 0.08);
+  box-shadow:
+    0 0 16px rgba(76, 214, 230, 0.7),
+    inset 0 0 14px rgba(76, 214, 230, 0.22);
+  outline: none;
+}
+
+/* Neon glow on every VT323 surface */
+.terminal,
+.loader-sub,
+.loader-status {
+  text-shadow:
+    0 0 4px rgba(244, 242, 255, 0.95),
+    0 0 10px rgba(244, 242, 255, 0.75),
+    0 0 20px rgba(76, 214, 230, 0.55),
+    0 0 36px rgba(76, 214, 230, 0.35),
+    0 0 60px rgba(155, 124, 214, 0.25);
+}
+.terminal .arrow {
+  text-shadow:
+    0 0 4px rgba(76, 214, 230, 1),
+    0 0 12px rgba(76, 214, 230, 0.85),
+    0 0 26px rgba(76, 214, 230, 0.55);
+}
+/* ---------- Terminal header ---------- */
+.terminal {
+  font-family: 'VT323', monospace;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+.terminal .row {
+  white-space: pre;
+}
+.terminal .prompt { color: var(--ink); }
+.terminal .key    { color: var(--ink); }
+.terminal .arrow  { color: var(--cyan); }
+.terminal .val    { color: var(--ink); letter-spacing: 1px; }
+
+/* ---------- Title ---------- */
+.title-wrap {
+  margin-top: 28px;
+  margin-left: -32px;
+  position: relative;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  font-family: 'Colo Pro', 'Bowlby One', 'Arial Black', sans-serif;
+  font-size: clamp(120px, 22vw, 260px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.079em;
+  user-select: none;
+}
+.title .line {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+
+.title .stripe {
+  position: absolute;
+  width: 100vw;
+  height: 0.19em;
+  pointer-events: none;
+  z-index: 0;
+}
+.title .cuhackit-line .stripe-pink {
+  /* top edge of stripe aligns with top of T cap */
+  top: 0.08em;
+  left: 101%;
+  background: var(--pink);
+}
+.title .cuhackit-line .stripe-cyan {
+  /* mid-joint of the K */
+  top: 0.36em;
+  left: 75%;
+  background: var(--cyan);
+}
+.title .cuhackit-line .stripe-purple {
+  /* bottom edge of stripe (top + height = 0.83em) aligns with A baseline */
+  top: 0.625em;
+  left: 55%;
+  background: var(--purple);
+}
+.title .ghost {
+  color: transparent;
+  -webkit-text-stroke: 0;
+  visibility: hidden;
+}
+.title .layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: transparent;
+  pointer-events: none;
+}
+.title .layer.cyan  { color: var(--cyan); -webkit-text-stroke: 0; transform: translate(-3px, -3px); z-index: 1; }
+.title .layer.pink  { color: var(--pink); -webkit-text-stroke: 0; transform: translate(3px, 3px);   z-index: 2; }
+.title .layer.white {
+  color: var(--ink);
+  -webkit-text-stroke: 0;
+  transform: translate(0, 0);
+  z-index: 3;
+}
+
+.title .twentyseven {
+  display: inline-block;
+  margin-left: 78%;
+  position: relative;
+  /* vertical nudge — negative = up, positive = down */
+  transform: translateY(-0.15em);
+}
+.title .twentyseven .layer.cyan  { color: var(--cyan); -webkit-text-stroke: 0; transform: translate(-2px, -2px); z-index: 1; }
+.title .twentyseven .layer.pink  { color: var(--pink); -webkit-text-stroke: 0; transform: translate(2px, 2px);   z-index: 2; }
+.title .twentyseven .layer.white {
+  color: var(--ink);
+  -webkit-text-stroke: 0;
+  transform: translate(0, 0);
+  z-index: 3;
+}
+
+/* ---------- Loader ---------- */
+.loader {
+  margin-top: 56px;
+}
+.loader-bar {
+  border: 2px solid var(--ink);
+  background: #ecebf2;
+  padding: 6px;
+  display: flex;
+  gap: 6px;
+  height: 60px;
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+}
+.block {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  flex: 0 0 auto;
+}
+.block:nth-child(1) { background: var(--b1); }
+.block:nth-child(2) { background: var(--b2); }
+.block:nth-child(3) { background: var(--b3); }
+.block:nth-child(4) { background: var(--b4); }
+.block:nth-child(5) { background: var(--b5); }
+.block:nth-child(6) { background: var(--b6); }
+.block:nth-child(7) {
+  background: var(--b7);
+  animation: blink 2s steps(1) infinite;
+}
+@keyframes blink {
+  0%, 50%   { background: var(--b7); }
+  50.01%, 100% { background: #ecebf2; }
+}
+
+.loader-status {
+  margin-top: 26px;
+  text-align: center;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 34px;
+  letter-spacing: 1px;
+}
+.loader-sub {
+  margin-top: 18px;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  opacity: 0.95;
+}
+
+/* ---------- Footer chrome ---------- */
+.corners::before,
+.corners::after,
+.corners > i::before,
+.corners > i::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--ink);
+}
+.corners::before { top: -2px; left: -2px;  border-right: none;  border-bottom: none; }
+.corners::after  { top: -2px; right: -2px; border-left: none;   border-bottom: none; }
+.corners > i::before { bottom: -2px; left: -2px;  border-right: none; border-top: none; }
+.corners > i::after  { bottom: -2px; right: -2px; border-left: none;  border-top: none; }
+
+/* When the frame is narrow enough that the CTA would touch the
+   terminal text, drop it out of the absolute slot and stack it
+   above the frame as its own row. */
+@media (max-width: 940px) {
+  .frame-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .cta {
+    position: static;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 720px) {
+  .frame { padding: 24px 24px 36px; }
+  .terminal { font-size: 22px; }
+  .title-wrap { margin-top: 32px; }
+  .loader-bar { height: 44px; }
+  .loader-status { font-size: 14px; }
+  .loader-sub { font-size: 22px; }
+}

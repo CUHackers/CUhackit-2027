@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'Colo Pro';
+  src: url('/fonts/Colo-Pro.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #14122e;
+  --ink: #f4f2ff;
+  --pink: #ec2e87;
+  --cyan: #4cd6e6;
+  --purple: #9b7cd6;
+
+  --b1: #d8442e;
+  --b2: #ef923a;
+  --b3: #f1c93f;
+  --b4: #34c98a;
+  --b5: #5cc7c7;
+  --b6: #a07ad6;
+  --b7: #ec2e87;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  height: 100vh;
+  font-family: 'VT323', 'Courier New', monospace;
+  overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
