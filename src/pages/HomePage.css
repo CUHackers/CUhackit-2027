@@ -14,14 +14,14 @@ body {
 .frame-wrap {
   position: relative;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1160px;
 }
 
 .frame {
   width: 100%;
   border: 2px solid var(--ink);
   background: var(--bg);
-  padding: 40px 56px 56px;
+  padding: 32px 44px 44px;
   position: relative;
   overflow: hidden;
   box-shadow:
@@ -33,8 +33,8 @@ body {
 /* ---------- Top-right CTA ---------- */
 .cta {
   position: absolute;
-  top: 40px;
-  right: 56px;
+  top: 32px;
+  right: 44px;
   z-index: 4;
   display: inline-block;
   font-family: 'VT323', 'Courier New', monospace;
@@ -100,8 +100,8 @@ body {
 
 /* ---------- Title ---------- */
 .title-wrap {
-  margin-top: 28px;
-  margin-left: -32px;
+  margin-top: 24px;
+  margin-left: -24px;
   position: relative;
 }
 
@@ -109,7 +109,7 @@ body {
   position: relative;
   z-index: 2;
   font-family: 'Colo Pro', 'Bowlby One', 'Arial Black', sans-serif;
-  font-size: clamp(120px, 22vw, 260px);
+  font-size: clamp(64px, 20vw, 228px);
   font-weight: 400;
   line-height: 0.92;
   letter-spacing: -0.079em;
@@ -186,7 +186,7 @@ body {
 
 /* ---------- Loader ---------- */
 .loader {
-  margin-top: 56px;
+  margin-top: 44px;
 }
 .loader-bar {
   border: 2px solid var(--ink);
@@ -194,8 +194,8 @@ body {
   padding: 6px;
   display: flex;
   gap: 6px;
-  height: 60px;
-  width: 70%;
+  height: 52px;
+  width: 66%;
   margin: 0 auto;
   position: relative;
 }
@@ -220,17 +220,17 @@ body {
 }
 
 .loader-status {
-  margin-top: 26px;
+  margin-top: 22px;
   text-align: center;
   font-family: 'VT323', 'Courier New', monospace;
-  font-size: 34px;
+  font-size: clamp(22px, 3.2vw, 30px);
   letter-spacing: 1px;
 }
 .loader-sub {
-  margin-top: 18px;
+  margin-top: 14px;
   text-align: center;
   font-family: 'VT323', monospace;
-  font-size: 28px;
+  font-size: clamp(18px, 2.7vw, 25px);
   letter-spacing: 2px;
   color: var(--ink);
   opacity: 0.95;
@@ -269,10 +269,24 @@ body {
 }
 
 @media (max-width: 720px) {
-  .frame { padding: 24px 24px 36px; }
+  body { padding: 16px; }
+  .frame { padding: 22px 22px 32px; }
   .terminal { font-size: 22px; }
-  .title-wrap { margin-top: 32px; }
-  .loader-bar { height: 44px; }
-  .loader-status { font-size: 14px; }
-  .loader-sub { font-size: 22px; }
+  .title-wrap { margin-top: 28px; margin-left: -10px; }
+  .title { font-size: clamp(56px, 23vw, 140px); }
+  .title .twentyseven { margin-left: 72%; }
+  .loader-bar { height: 40px; width: 72%; }
+}
+
+@media (max-width: 480px) {
+  body { padding: 10px; }
+  .frame { padding: 18px 16px 28px; }
+  .terminal { font-size: 18px; }
+  .title-wrap { margin-top: 24px; margin-left: -4px; }
+  .title { font-size: clamp(44px, 22vw, 92px); }
+  .title .twentyseven { margin-left: 68%; }
+  .loader { margin-top: 32px; }
+  .loader-bar { width: 78%; height: 34px; gap: 4px; padding: 4px; }
+  .loader-status { margin-top: 18px; }
+  .loader-sub { margin-top: 10px; }
 }
