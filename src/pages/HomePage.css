@@ -12,10 +12,6 @@ body {
 }
 
 .frame-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 14px;
   position: relative;
   width: 100%;
   max-width: 1160px;
@@ -34,19 +30,11 @@ body {
     0 30px 80px rgba(0, 0, 0, 0.5);
 }
 
-.trust-badge {
-  position: fixed;
-  top: 0;
-  right: 16px;
-  width: clamp(74px, 9vw, 108px);
-  height: auto;
-  z-index: 5;
-}
-
 /* ---------- Top-right CTA ---------- */
 .cta {
-  position: static;
-  align-self: flex-start;
+  position: absolute;
+  top: 32px;
+  right: 44px;
   z-index: 4;
   display: inline-block;
   font-family: 'VT323', 'Courier New', monospace;
@@ -264,16 +252,25 @@ body {
 .corners > i::before { bottom: -2px; left: -2px;  border-right: none; border-top: none; }
 .corners > i::after  { bottom: -2px; right: -2px; border-left: none;  border-top: none; }
 
+/* When the frame is narrow enough that the CTA would touch the
+   terminal text, drop it out of the absolute slot and stack it
+   above the frame as its own row. */
 @media (max-width: 940px) {
-  body {
-    padding: 96px 16px 16px;
+  .frame-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .cta {
+    position: static;
+    align-self: flex-end;
   }
 }
 
 @media (max-width: 720px) {
-  body { padding: 88px 16px 16px; }
+  body { padding: 16px; }
   .frame { padding: 22px 22px 32px; }
-  .trust-badge { top: 0; right: 12px; width: clamp(58px, 12vw, 82px); }
   .terminal { font-size: 22px; }
   .title-wrap { margin-top: 28px; margin-left: -10px; }
   .title { font-size: clamp(56px, 23vw, 140px); }
@@ -282,9 +279,8 @@ body {
 }
 
 @media (max-width: 480px) {
-  body { padding: 74px 10px 10px; }
+  body { padding: 10px; }
   .frame { padding: 18px 16px 28px; }
-  .trust-badge { top: 0; right: 8px; width: clamp(48px, 15vw, 64px); }
   .terminal { font-size: 18px; }
   .title-wrap { margin-top: 24px; margin-left: -4px; }
   .title { font-size: clamp(44px, 22vw, 92px); }

@@ -3,17 +3,11 @@ import './HomePage.css';
 const HomePage = () => {
     return (
         <div className="frame-wrap">
-            <img
-                className="trust-badge"
-                src="/trust-badge-blue.svg"
-                alt="MLH official member badge for the 2027 season"
-            />
-            <a
-                className="cta"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSeuOLkWGfGKpmq8u2F3OFrzJ9-8Bt_IRYMV-E9Hs8y1pIrK5w/viewform?usp=preview"
-            >
-                Want to participate? Fill out the interest form.
-            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuOLkWGfGKpmq8u2F3OFrzJ9-8Bt_IRYMV-E9Hs8y1pIrK5w/viewform?usp=preview">
+                <button className="cta" type="button">
+                    Want to participate? Fill out the interest form.
+                </button>
+            </a>            
 
             <main className="frame corners">
                 <i></i>
