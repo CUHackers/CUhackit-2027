@@ -3,9 +3,11 @@ import './HomePage.css';
 const HomePage = () => {
     return (
         <div className="frame-wrap">
-            <button className="cta" type="button">
-                Want to participate? Fill out the interest form.
-            </button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuOLkWGfGKpmq8u2F3OFrzJ9-8Bt_IRYMV-E9Hs8y1pIrK5w/viewform?usp=preview">
+                <button className="cta" type="button">
+                    Want to participate? Fill out the interest form.
+                </button>
+            </a>            
 
             <main className="frame corners">
                 <i></i>
@@ -15,13 +17,15 @@ const HomePage = () => {
                     <span className="prompt">&gt;&gt;</span>{' '}
                     <span className="key">location</span>{' '}
                     <span className="arrow">-&gt;</span>{' '}
-                    <span className="val">???</span>
+                    <span className="val">
+                        <a href="https://www.clemson.edu/">clemson university</a>
+                    </span>
                 </div>
                 <div className="row">
                     <span className="prompt">&gt;&gt;</span>{' '}
                     <span className="key">date</span>{' '}
                     <span className="arrow">-&gt;</span>{' '}
-                    <span className="val">???</span>
+                    <span className="val">february 27th and 28th</span>
                 </div>
             </section>
 
@@ -62,7 +66,7 @@ const HomePage = () => {
                     <div className="block"></div>
                     <div className="block" aria-label="loading"></div>
                 </div>
-                <div className="loader-status">Loading CUHACKIT X...</div>
+                <div className="loader-status">Loading CUhackit X...</div>
                 <div className="loader-sub">see you soon</div>
             </section>
             </main>
