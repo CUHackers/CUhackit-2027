@@ -1,17 +1,41 @@
 import './HomePage.css';
 
+const mlhBadgeSrc =
+    'https://logged-assets.s3.amazonaws.com/trust-badge/2027/mlh-trust-badge-2027-white.svg';
+
 const HomePage = () => {
     return (
         <div className="frame-wrap">
-            <img
-                className="trust-badge"
-                src="/trust-badge-blue.svg"
-                alt="MLH official member badge for the 2027 season"
-            />
+            <a
+                id="mlh-trust-badge"
+                href="https://www.mlh.com"
+                target="_blank"
+                rel="noreferrer"
+            >
+                <img
+                    className="badge-layer badge-cyan"
+                    src={mlhBadgeSrc}
+                    alt=""
+                    aria-hidden="true"
+                />
+                <img
+                    className="badge-layer badge-pink"
+                    src={mlhBadgeSrc}
+                    alt=""
+                    aria-hidden="true"
+                />
+                <img
+                    className="badge-layer badge-white"
+                    src={mlhBadgeSrc}
+                    alt="Major League Hacking 2026 Hackathon Season"
+                />
+            </a>
             <div className="frame-stage">
                 <a
                     className="cta"
                     href="https://docs.google.com/forms/d/e/1FAIpQLSeuOLkWGfGKpmq8u2F3OFrzJ9-8Bt_IRYMV-E9Hs8y1pIrK5w/viewform?usp=preview"
+                    target="_blank"
+                    rel="noreferrer"
                 >
                     Want to participate? Fill out the interest form.
                 </a>
@@ -25,7 +49,13 @@ const HomePage = () => {
                             <span className="key">location</span>{' '}
                             <span className="arrow">-&gt;</span>{' '}
                             <span className="val">
-                                <a href="https://www.clemson.edu/">clemson university</a>
+                                <a
+                                    href="https://www.clemson.edu/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    clemson university
+                                </a>
                             </span>
                         </div>
                         <div className="row">
@@ -77,6 +107,20 @@ const HomePage = () => {
                         <div className="loader-sub">see you soon</div>
                     </section>
                 </main>
+
+                <nav className="policy-links" aria-label="event policy and contact links">
+                    <a
+                        href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        MLH Code of Conduct
+                    </a>
+                    <span className="policy-separator" aria-hidden="true">|</span>
+                    <a href="mailto:cuhackers@clemson.edu" target="_blank" rel="noreferrer">
+                        cuhackers@clemson.edu
+                    </a>
+                </nav>
             </div>
         </div>
     );
