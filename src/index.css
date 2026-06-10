@@ -37,9 +37,14 @@ html,
 body {
   background: var(--bg);
   color: var(--ink);
-  height: 100vh;
+  height: 100%;
   font-family: 'VT323', 'Courier New', monospace;
   overflow: hidden;
+}
+
+body {
+  height: 100vh;
+  height: 100dvh;
 }
 
 html {
@@ -48,7 +53,8 @@ html {
 
 #root {
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
+  min-height: 0;
 }
 
 button,

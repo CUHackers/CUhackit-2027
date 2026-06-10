@@ -2,7 +2,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: clamp(8px, 3dvh, 24px) 24px;
 }
 
 #root {
@@ -12,20 +12,69 @@ body {
 }
 
 .frame-wrap {
+  --composition-scale: 1;
+
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 14px;
+  justify-content: center;
   position: relative;
   width: 100%;
   max-width: 1080px;
+}
+
+@supports (transform: scale(calc(100dvh / 620px))) {
+  .frame-wrap {
+    --composition-scale: clamp(0.78, calc(100dvh / 620px), 1);
+  }
+}
+
+.frame-stage {
+  --outer-gap: clamp(8px, 1.75dvh, 14px);
+  --frame-pad-top: clamp(12px, 3.5dvh, 28px);
+  --frame-pad-bottom: clamp(16px, 4.75dvh, 38px);
+  --cta-font-size: clamp(18px, 2.75dvh, 22px);
+  --cta-pad-y: clamp(5px, 1.25dvh, 10px);
+  --terminal-size: clamp(22px, 4dvh, 32px);
+  --title-margin-top: clamp(8px, 2.5dvh, 20px);
+  --title-size: clamp(58px, min(18vw, 24dvh), 204px);
+  --loader-margin-top: clamp(8px, 3.5dvh, 36px);
+  --loader-bar-height: clamp(26px, 5.25dvh, 46px);
+  --loader-bar-padding: clamp(4px, 0.75dvh, 6px);
+  --loader-bar-gap: clamp(4px, 0.75dvh, 6px);
+  --loader-status-margin: clamp(8px, 2dvh, 18px);
+  --loader-sub-margin: clamp(4px, 1.2dvh, 10px);
+  --loader-status-size: clamp(18px, min(3vw, 3.5dvh), 28px);
+  --loader-sub-size: clamp(15px, min(2.4vw, 2.75dvh), 23px);
+  --twentyseven-offset: 78%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--outer-gap);
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 1080px;
+  transform: scale(var(--composition-scale));
+  transform-origin: center center;
+}
+
+@supports (margin-left: calc(78% + (620px - 100dvh) / 4)) {
+  .frame-stage {
+    --twentyseven-offset: clamp(78%, calc(78% + (620px - 100dvh) / 4), 84%);
+  }
+}
+
+@supports (width: calc(100% / 0.9)) {
+  .frame-stage {
+    width: calc(100% / var(--composition-scale));
+    max-width: calc(1080px / var(--composition-scale));
+  }
 }
 
 .frame {
   width: 100%;
   border: 2px solid var(--ink);
   background: var(--bg);
-  padding: 28px 38px 38px;
+  padding: var(--frame-pad-top) 38px var(--frame-pad-bottom);
   position: relative;
   overflow: hidden;
   box-shadow:
@@ -50,12 +99,12 @@ body {
   z-index: 4;
   display: inline-block;
   font-family: 'VT323', 'Courier New', monospace;
-  font-size: 22px;
+  font-size: var(--cta-font-size);
   letter-spacing: 0.5px;
   color: var(--ink);
   background: transparent;
   border: 2px solid var(--ink);
-  padding: 10px 18px;
+  padding: var(--cta-pad-y) 18px;
   cursor: pointer;
   text-shadow:
     0 0 4px rgba(244, 242, 255, 0.95),
@@ -98,7 +147,7 @@ body {
 /* ---------- Terminal header ---------- */
 .terminal {
   font-family: 'VT323', monospace;
-  font-size: 32px;
+  font-size: var(--terminal-size);
   line-height: 1.2;
   letter-spacing: 0.5px;
 }
@@ -112,7 +161,7 @@ body {
 
 /* ---------- Title ---------- */
 .title-wrap {
-  margin-top: 20px;
+  margin-top: var(--title-margin-top);
   margin-left: -18px;
   position: relative;
 }
@@ -121,7 +170,7 @@ body {
   position: relative;
   z-index: 2;
   font-family: 'Colo Pro', 'Bowlby One', 'Arial Black', sans-serif;
-  font-size: clamp(58px, 18vw, 204px);
+  font-size: var(--title-size);
   font-weight: 400;
   line-height: 0.92;
   letter-spacing: -0.079em;
@@ -137,6 +186,7 @@ body {
 .title .stripe {
   position: absolute;
   width: 100vw;
+  width: calc(100vw / var(--composition-scale));
   height: 0.19em;
   pointer-events: none;
   z-index: 0;
@@ -182,7 +232,7 @@ body {
 
 .title .twentyseven {
   display: inline-block;
-  margin-left: 78%;
+  margin-left: var(--twentyseven-offset);
   position: relative;
   /* vertical nudge — negative = up, positive = down */
   transform: translateY(-0.15em);
@@ -198,15 +248,15 @@ body {
 
 /* ---------- Loader ---------- */
 .loader {
-  margin-top: 36px;
+  margin-top: var(--loader-margin-top);
 }
 .loader-bar {
   border: 2px solid var(--ink);
   background: #ecebf2;
-  padding: 6px;
+  padding: var(--loader-bar-padding);
   display: flex;
-  gap: 6px;
-  height: 46px;
+  gap: var(--loader-bar-gap);
+  height: var(--loader-bar-height);
   width: 62%;
   margin: 0 auto;
   position: relative;
@@ -232,17 +282,19 @@ body {
 }
 
 .loader-status {
-  margin-top: 18px;
+  margin-top: var(--loader-status-margin);
   text-align: center;
   font-family: 'VT323', 'Courier New', monospace;
-  font-size: clamp(20px, 3vw, 28px);
+  font-size: var(--loader-status-size);
+  line-height: 1;
   letter-spacing: 1px;
 }
 .loader-sub {
-  margin-top: 10px;
+  margin-top: var(--loader-sub-margin);
   text-align: center;
   font-family: 'VT323', monospace;
-  font-size: clamp(17px, 2.4vw, 23px);
+  font-size: var(--loader-sub-size);
+  line-height: 1;
   letter-spacing: 2px;
   color: var(--ink);
   opacity: 0.95;
@@ -265,26 +317,56 @@ body {
 .corners > i::after  { bottom: -2px; right: -2px; border-left: none;  border-top: none; }
 
 @media (max-width: 720px) {
-  body { padding: 16px; }
-  .frame { padding: 22px 22px 32px; }
+  body { padding: clamp(8px, 2.5dvh, 16px) 16px; }
+  @supports (transform: scale(calc(100dvh / 600px))) {
+    .frame-wrap {
+      --composition-scale: clamp(0.84, calc(100dvh / 600px), 1);
+    }
+  }
+  .frame-stage {
+    --frame-pad-top: clamp(12px, 3.2dvh, 22px);
+    --frame-pad-bottom: clamp(14px, 4.5dvh, 32px);
+    --terminal-size: clamp(18px, 3.7dvh, 22px);
+    --title-margin-top: clamp(12px, 3.5dvh, 28px);
+    --title-size: clamp(52px, min(23vw, 24dvh), 140px);
+    --loader-margin-top: clamp(12px, 4dvh, 36px);
+    --loader-bar-height: clamp(26px, 5.75dvh, 40px);
+    --loader-status-size: clamp(18px, min(3vw, 3.5dvh), 28px);
+    --loader-sub-size: clamp(15px, min(2.4vw, 2.75dvh), 23px);
+    --twentyseven-offset: 72%;
+  }
+  .frame { padding: var(--frame-pad-top) 22px var(--frame-pad-bottom); }
   .trust-badge { top: 0; right: 12px; width: clamp(58px, 12vw, 82px); }
-  .terminal { font-size: 22px; }
-  .title-wrap { margin-top: 28px; margin-left: -10px; }
-  .title { font-size: clamp(56px, 23vw, 140px); }
-  .title .twentyseven { margin-left: 72%; }
-  .loader-bar { height: 40px; width: 72%; }
+  .title-wrap { margin-left: -10px; }
+  .loader-bar { width: 72%; }
 }
 
 @media (max-width: 480px) {
-  body { padding: 10px; }
-  .frame { padding: 18px 16px 28px; }
+  body { padding: clamp(6px, 2dvh, 10px) 10px; }
+  @supports (transform: scale(calc(100dvh / 520px))) {
+    .frame-wrap {
+      --composition-scale: clamp(0.88, calc(100dvh / 520px), 1);
+    }
+  }
+  .frame-stage {
+    --outer-gap: clamp(6px, 1.5dvh, 12px);
+    --frame-pad-top: clamp(10px, 3dvh, 18px);
+    --frame-pad-bottom: clamp(12px, 4dvh, 28px);
+    --cta-font-size: clamp(16px, 2.75dvh, 22px);
+    --cta-pad-y: clamp(4px, 1dvh, 10px);
+    --terminal-size: clamp(16px, 3.6dvh, 18px);
+    --title-margin-top: clamp(10px, 3.2dvh, 24px);
+    --title-size: clamp(44px, min(22vw, 24dvh), 92px);
+    --loader-margin-top: clamp(10px, 3.6dvh, 32px);
+    --loader-bar-height: clamp(24px, 5dvh, 34px);
+    --loader-bar-padding: clamp(3px, 0.9dvh, 4px);
+    --loader-bar-gap: clamp(3px, 0.9dvh, 4px);
+    --loader-status-size: clamp(16px, 3.4dvh, 20px);
+    --loader-sub-size: clamp(14px, 2.8dvh, 17px);
+    --twentyseven-offset: 68%;
+  }
+  .frame { padding: var(--frame-pad-top) 16px var(--frame-pad-bottom); }
   .trust-badge { top: 0; right: 8px; width: clamp(48px, 15vw, 64px); }
-  .terminal { font-size: 18px; }
-  .title-wrap { margin-top: 24px; margin-left: -4px; }
-  .title { font-size: clamp(44px, 22vw, 92px); }
-  .title .twentyseven { margin-left: 68%; }
-  .loader { margin-top: 32px; }
-  .loader-bar { width: 78%; height: 34px; gap: 4px; padding: 4px; }
-  .loader-status { margin-top: 18px; }
-  .loader-sub { margin-top: 10px; }
+  .title-wrap { margin-left: -4px; }
+  .loader-bar { width: 78%; }
 }
