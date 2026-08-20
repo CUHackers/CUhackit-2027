@@ -62,7 +62,7 @@ const HomePage = () => {
                             <span className="prompt">&gt;&gt;</span>{' '}
                             <span className="key">date</span>{' '}
                             <span className="arrow">-&gt;</span>{' '}
-                            <span className="val">february 27th and 28th</span>
+                            <span className="val">february 20th and 21st</span>
                         </div>
                     </section>
 
